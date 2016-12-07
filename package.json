@@ -1,0 +1,22 @@
+{
+  "name": "standard-readme-linter-regex",
+  "version": "1.0.0",
+  "description": "A dumb regex linter for standard-readme",
+  "main": "index.js",
+  "bin": "cli.js",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "colors": "^1.1.2",
+    "escape-string-regexp": "^1.0.5",
+    "gh-description": "0.0.7",
+    "graceful-fs": "^4.1.11",
+    "mocha": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "keywords": ["readme", "standard-readme", "standard", "linter", "regex"],
+  "author": "Richard Littauer <richard.littauer@gmail.com> (http://burntfen.com)",
+  "license": "MIT"
+}
