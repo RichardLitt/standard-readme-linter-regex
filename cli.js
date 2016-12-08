@@ -1,7 +1,24 @@
-const checkFileContents = require('./').checkFileContents
+const checkFileContents = require('./index').checkFileContents
+const meow = require('meow')
+// const aliases = require('aliases')
 
-// TODO Use yargs or pony or something
+const cli = meow([`
+  Usage
+    $ standard-readme-linter-regex <input>
+
+  Options
+    --project, -p The overarching project
+    --repo, -r The name of the repository
+
+  Examples
+    $ standard-readme-linter-regex README.MD -p=RichardLitt --repo=my-project
+`], {
+  alias: {
+    p: 'project',
+    r: 'repo'
+  }
+})
 
 if (process.argv[2]) {
-  checkFileContents(process.argv[2], process.argv[3])
+  checkFileContents(process.argv[2], cli.flags)
 }
