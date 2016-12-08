@@ -3,7 +3,9 @@
   "version": "1.0.3",
   "description": "A dumb regex linter for standard-readme",
   "main": "index.js",
-  "bin": "cli.js",
+  "bin": {
+    "srlr": "cli.js"
+  },
   "dependencies": {
     "assert": "^1.4.1",
     "colors": "^1.1.2",
