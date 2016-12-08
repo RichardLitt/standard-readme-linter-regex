@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const checkFileContents = require('./index').checkFileContents
 const meow = require('meow')
 // const aliases = require('aliases')
