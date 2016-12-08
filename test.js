@@ -58,4 +58,10 @@ describe('validate file', () => {
     const data = validate(input, './standard-linter/REAMDE.txt', 'none')
     assert.equal(data.markdown, false)
   })
+
+  it('checks the code of conduct link', () => {
+    input = '[Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md)'
+    const data = validate(input, 'README.md')
+    assert.equal(data.cocLink, true)
+  })
 })
