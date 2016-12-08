@@ -47,7 +47,7 @@ module.exports = function validate (data, path, opts) {
   if (check.documentRepo) {
     check.ccLicense = ('' + data).match('CC-BY')
   } else {
-    check.mitLicense = ('' + data).match(newRegexp(escapeRegExp('[MIT](LICENSE)')))
+    check.mitLicense = ('' + data).match(new RegExp(escapeRegExp('[MIT](LICENSE)')))
   }
   check.copyright = ('' + data).match('©')
   check.copyrightYearAndName = ('' + data).match('© [0-9]+ [a-zA-Z\., ]+')
