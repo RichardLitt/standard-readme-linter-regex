@@ -8,6 +8,9 @@
 
 - [Install](#install)
 - [Usage](#usage)
+  - [Options](#options)
+  - [Alias](#alias)
+  - [Configuration](#configuration)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -29,4 +32,4 @@ Please do! Check out [the issues](https://github.com/RichardLitt/standard-readme
 
 ## License
 
-[MIT](LICENCE) © 2016 Richard Littauer
+[MIT](LICENSE) © 2016 Richard Littauer
