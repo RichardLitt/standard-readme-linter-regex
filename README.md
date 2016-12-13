@@ -23,8 +23,23 @@ npm i -g standard-readme-linter-regex
 ## Usage
 
 ```sh
-standard-readme-linter-regex ./standard-readme-linter-regex/README.MD standard-readme-linter-regex RichardLitt
+standard-readme-linter-regex ./standard-readme-linter-regex/README.MD -r standard-readme-linter-regex -p RichardLitt
 ```
+
+### Options
+
+```
+--project, -p The overarching project or GitHub owner
+--repo, -r    The name of the repository
+```
+
+### Alias
+
+This package is aliased as `srlr`.
+
+## Maintainers
+
+[@RichardLitt](https://github.com/RichardLitt).
 
 ## Contribute
 
