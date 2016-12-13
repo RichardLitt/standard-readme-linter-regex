@@ -1,6 +1,6 @@
 {
   "name": "standard-readme-linter-regex",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A dumb regex linter for standard-readme",
   "main": "index.js",
   "bin": {
@@ -28,7 +28,7 @@
   "author": "Richard Littauer <richard.littauer@gmail.com> (http://burntfen.com)",
   "license": "MIT",
   "coordinates": [
-    45.5191989,
-    -73.5789245
+    45.5192063,
+    -73.57896570000001
   ]
 }
