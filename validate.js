@@ -1,11 +1,11 @@
 const escapeRegExp = require('escape-string-regexp')
-const ghDescription = require('gh-description')
+// const ghDescription = require('gh-description')
 
-function validateFile (data, path, project, declTitle, opts) {
-  opts = opts || {}
-  // TODO Refactor the validators that check file name and place here.
+// function validateFile (data, opts) {
+//   opts = opts || {}
+//   // TODO Refactor the validators that check file name and place here.
 
-}
+// }
 
 module.exports = function validate (data, path, opts) {
   opts = opts || {}
@@ -29,8 +29,7 @@ module.exports = function validate (data, path, opts) {
   // There is a standard readme link somewhere TODO near the end
 
   // Badges
-  check.standardReadmeLink = ('' + data).match('Small note: If editing the README')
-  // check.standardReadmeBadge = ('' + data).match(escapeRegExp('[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)'))
+  check.standardReadmeBadge = ('' + data).match(escapeRegExp('[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)'))
 
   // TOC
   check.toc = ('' + data).match('## Table of Contents')
@@ -39,12 +38,9 @@ module.exports = function validate (data, path, opts) {
   check.maintainers = ('' + data).match('## Maintainers')
   check.contribute = ('' + data).match('## Contribute')
   check.issuesLink = ('' + data).match(new RegExp(escapeRegExp(`https://github.com/${check.project}/${repo}/issues`), 'g'))
-  check.contributorsLink = ('' + data).match(new RegExp(escapeRegExp(`https://github.com/${check.project}/${check.project}/blob/master/contributing.md`), 'g'))
-  check.coc = ('' + data).match(new RegExp(`Please be aware that all interactions related to ${check.project}`, 'gi'))
-  check.cocLink = ('' + data).match(new RegExp(escapeRegExp('[Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md)'), 'g'))
   check.license = ('' + data).match('## License')
-  check.documentRepo = ('' + data).match('This repository is only for documents.')
-  if (check.documentRepo) {
+  check.codeRepo = !('' + data).match('This repository is only for documents.')
+  if (!check.codeRepo) {
     check.ccLicense = ('' + data).match('CC-BY')
     delete check.install
     delete check.usage
@@ -53,8 +49,18 @@ module.exports = function validate (data, path, opts) {
   }
   check.copyright = ('' + data).match('©')
   check.copyrightYearAndName = ('' + data).match('© [0-9]+ [a-zA-Z\., ]+')
-  check.noTBD = !('' + data).match('TBD')
-  check.noTODO = !('' + data).match('TODO')
+
+  if (opts.config) {
+    for (var key in opts.config.override) {
+      delete check[opts.config.override[key]]
+    }
+    for (key in opts.config.includes) {
+      check[key] = ('' + data).match(new RegExp(escapeRegExp(`${opts.config.includes[key]}`), 'g'))
+    }
+    for (key in opts.config.excludes) {
+      check[key] = !('' + data).match(new RegExp(`${opts.config.excludes[key]}`, 'gi'))
+    }
+  }
 
   return check
 

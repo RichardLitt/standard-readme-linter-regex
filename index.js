@@ -9,10 +9,10 @@ function printObject (obj) {
   }
 }
 
-function checkFileContents (input, project, actualTitle) {
+function checkFileContents (input, opts) {
   var stream = fs.createReadStream(input)
   stream.on('data', function (data) {
-    printObject(validate(data, stream.path, project, actualTitle))
+    printObject(validate(data, stream.path, opts))
   })
   stream.on('error', function (err) {
     if (err) {
