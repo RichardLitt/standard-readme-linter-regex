@@ -46,6 +46,8 @@ module.exports = function validate (data, path, opts) {
   check.documentRepo = ('' + data).match('This repository is only for documents.')
   if (check.documentRepo) {
     check.ccLicense = ('' + data).match('CC-BY')
+    delete check.install
+    delete check.usage
   } else {
     check.mitLicense = ('' + data).match(new RegExp(escapeRegExp('[MIT](LICENSE)')))
   }
