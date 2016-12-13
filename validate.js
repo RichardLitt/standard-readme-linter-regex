@@ -21,7 +21,7 @@ module.exports = function validate (data, path, opts) {
 
   check.project = opts.project || pathArr[pathArr.length - 3]
 
-  var currentDir = new RegExp('# ' + repo, 'i')
+  var currentDir = new RegExp(`(# (${repo}|.* \\(${repo}\\))|.* \\(${repo}\\)\n===)`, 'i')
 
   // The title matches the folder name and is prefixed with #
   check.repo = ('' + data).match(currentDir)
