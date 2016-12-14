@@ -49,10 +49,18 @@ srlr README.MD -c ../srlr-options.json
 ```json
 {
   "includes": {
-    "betterBadge": "[![](https://img.shields.io/badge/project-standard-readme-blue.svg?style=flat-square)](http://github.com/RichardLitt/standard-readme)",
+    "betterBadge": {
+      "string": [![](https://img.shields.io/badge/project-standard-readme-blue.svg?style=flat-square)](http://github.com/RichardLitt/standard-readme)",
+      "escape": true, // escape characters that are regex symbols
+      "flags": "g"
+    }
   },
   "excludes": {
-    "noTODO": "(TODO|TBD)",
+    "noTODO": {
+      "string": "(TODO|TBD)",
+      "escape": false,
+      "flags": "gi" // ignore case
+    }
   },
   "override": [
     "standardReadmeBadge"

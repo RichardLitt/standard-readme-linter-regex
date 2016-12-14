@@ -53,15 +53,21 @@ module.exports = function validate (data, path, opts) {
   check.copyright = ('' + data).match('©')
   check.copyrightYearAndName = ('' + data).match('© [0-9]+ [a-zA-Z\.,\\[\\] ]+')
 
+  var string
+
   if (opts.config) {
     for (var key in opts.config.override) {
       delete check[opts.config.override[key]]
     }
     for (key in opts.config.includes) {
-      check[key] = ('' + data).match(new RegExp(escapeRegExp(`${opts.config.includes[key]}`), 'g'))
+      string = opts.config.includes[key].string
+      string = (opts.config.includes[key].escape) ? escapeRegExp(string) : string
+      check[key] = ('' + data).match(new RegExp(`${string}`, `${opts.config.includes[key].flags}`))
     }
     for (key in opts.config.excludes) {
-      check[key] = !('' + data).match(new RegExp(`${opts.config.excludes[key]}`, 'gi'))
+      string = opts.config.excludes[key].string
+      string = (opts.config.excludes[key].escape) ? escapeRegExp(string) : string
+      check[key] = !('' + data).match(new RegExp(`${string}`, `${opts.config.excludes[key].flags}`))
     }
   }
 
