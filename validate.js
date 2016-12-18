@@ -51,9 +51,8 @@ module.exports = function validate (data, path, opts) {
     check.mitLicense = ('' + data).match(new RegExp(escapeRegExp('[MIT](LICENSE)')))
   }
   check.copyright = ('' + data).match('©')
-  check.copyrightYearAndName = ('' + data).match('© [0-9]+ [a-zA-Z\.,\\[\\] ]+')
-
-  var string
+  check.copyrightYear = ('' + data).match('© [0-9\-]+')
+  check.copyrightName = ('' + data).match('© [0-9\-a-zA-Z\.,\\[\\] ]+')
 
   if (opts.config) {
     for (var key in opts.config.override) {
