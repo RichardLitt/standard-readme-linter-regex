@@ -6,28 +6,6 @@ const input = `# standard-linter
 `
 
 // TODO Add Unit tests
-//
-// Current options:
-// {
-//   README: true,
-//   markdown: true,
-//   title: null,
-//   titleAtStart: null,
-//   standardReadmeLink: null,
-//   standardReadmeBadge: null,
-//   toc: null,
-//   install: null,
-//   usage: null,
-//   contribute: null,
-//   issuesLink: null,
-//   contributorsLink: null,
-//   coc: null,
-//   cocLink: null,
-//   maintainers: null,
-//   license: null,
-//   noTBD: true,
-//   noTODO: true
-// }
 
 describe('validate file', () => {
   it('reads some file', function() {
