@@ -2,7 +2,8 @@
 const assert = require('assert')
 const validate = require('./validate.js')
 
-const input = `# standard-linter`
+const input = `# standard-linter
+`
 
 // TODO Add Unit tests
 //
