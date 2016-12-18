@@ -55,19 +55,11 @@ module.exports = function validate (data, path, opts) {
   check.copyrightName = ('' + data).match('© [0-9\-a-zA-Z\.,\\[\\] ]+')
 
   if (opts.config) {
-    for (var key in opts.config.override) {
-      delete check[opts.config.override[key]]
-    }
-    for (key in opts.config.includes) {
-      string = opts.config.includes[key].string
-      string = (opts.config.includes[key].escape) ? escapeRegExp(string) : string
-      check[key] = ('' + data).match(new RegExp(`${string}`, `${opts.config.includes[key].flags}`))
-    }
-    for (key in opts.config.excludes) {
-      string = opts.config.excludes[key].string
-      string = (opts.config.excludes[key].escape) ? escapeRegExp(string) : string
-      check[key] = !('' + data).match(new RegExp(`${string}`, `${opts.config.excludes[key].flags}`))
-    }
+    Object.assign(check, opts.config({
+      project: check.project,
+      repo: check.repo,
+      opts: opts // Send any other options you want
+    }, data))
   }
 
   return check

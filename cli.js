@@ -2,8 +2,6 @@
 
 const checkFileContents = require('./index').checkFileContents
 const meow = require('meow')
-const fs = require('graceful-fs')
-// const aliases = require('aliases')
 
 const cli = meow([`
   Usage
@@ -12,7 +10,9 @@ const cli = meow([`
   Options
     --project, -p The overarching project
     --repo, -r The name of the repository
-    --config, -c The name a config file
+    --config, -c The path to a config js file to require
+    --projectName The name of the project
+    --projectLink The link to the project's main page
 
   Examples
     $ standard-readme-linter-regex README.MD -p=RichardLitt --repo=my-project
@@ -20,7 +20,9 @@ const cli = meow([`
   alias: {
     p: 'project',
     r: 'repo',
-    c: 'config'
+    c: 'config',
+    n: 'name',
+    l: 'link'
   }
 })
 
@@ -42,19 +44,9 @@ function getFlagsFromDir (cli, cb) {
 }
 
 if (cli.flags.config) {
-  fs.readFile(cli.flags.config, 'utf8', (err, data) => {
-    if (err) {
-      console.log('Could not read file')
-    }
-
-    cli.flags.config = JSON.parse(data)
-
-    getFlagsFromDir(cli, (cli) => {
-      checkFileContents(cli.input[0], cli.flags)
-    })
-  })
-} else {
-  getFlagsFromDir(cli, (cli) => {
-    checkFileContents(cli.input[0], cli.flags)
-  })
+  cli.flags.config = require(cli.flags.config)
 }
+
+getFlagsFromDir(cli, (cli) => {
+  checkFileContents(cli.input[0], cli.flags)
+})

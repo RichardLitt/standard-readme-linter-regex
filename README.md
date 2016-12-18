@@ -23,15 +23,17 @@ npm i -g standard-readme-linter-regex
 ## Usage
 
 ```sh
-standard-readme-linter-regex ./standard-readme-linter-regex/README.MD -r standard-readme-linter-regex -p RichardLitt
+standard-readme-linter-regex README.MD -c config.js -r standard-readme-linter-regex -p richardlitt -n RichardLitt -l https://burntfen.com
 ```
 
 ### Options
 
 ```
---project, -p The overarching project or GitHub owner
---repo, -r    The name of the repository
---config, -c  The name a config file
+--project, -p The overarching project
+--repo, -r The name of the repository
+--config, -c The path to a config js file to require
+--projectName The name of the project
+--projectLink The link to the project's main page
 ```
 
 ### Alias
@@ -43,30 +45,10 @@ This package is aliased as `srlr`.
 You can also use an external configuration file to define extra regexps. For instance:
 
 ```sh
-srlr README.MD -c ../srlr-options.json
+srlr README.MD -c example-config.js
 ```
 
-```json
-{
-  "includes": {
-    "betterBadge": {
-      "string": [![](https://img.shields.io/badge/project-standard-readme-blue.svg?style=flat-square)](http://github.com/RichardLitt/standard-readme)",
-      "escape": true, // escape characters that are regex symbols
-      "flags": "g"
-    }
-  },
-  "excludes": {
-    "noTODO": {
-      "string": "(TODO|TBD)",
-      "escape": false,
-      "flags": "gi" // ignore case
-    }
-  },
-  "override": [
-    "standardReadmeBadge"
-  ]
-}
-```
+See the [example config file](example-config.js) for an example.
 
 ## Maintainers
 
