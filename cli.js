@@ -21,8 +21,8 @@ const cli = meow([`
     p: 'project',
     r: 'repo',
     c: 'config',
-    n: 'name',
-    l: 'link'
+    n: 'projectName',
+    l: 'projectLink'
   }
 })
 
