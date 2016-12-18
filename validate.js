@@ -33,7 +33,7 @@ module.exports = function validate (data, path, opts) {
   check.standardReadmeBadge = ('' + data).match(escapeRegExp('[![](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)'))
 
   // TOC
-  if (('' + data).match(new RegExp('\n', 'g')).length >= 100) {
+  if (('' + data).match(new RegExp('\n', 'g')) && ('' + data).match(new RegExp('\n', 'g')).length >= 100) {
     check.toc = ('' + data).match('## Table of Contents')
   }
   check.install = ('' + data).match('## Install')
