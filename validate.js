@@ -55,11 +55,9 @@ module.exports = function validate (data, path, opts) {
   check.copyrightName = ('' + data).match('© [0-9\-a-zA-Z\.,\\[\\] ]+')
 
   if (opts.config) {
-    Object.assign(check, opts.config({
-      project: check.project,
-      repo: check.repo,
-      opts: opts // Send any other options you want
-    }, data))
+    opts.project = check.project
+    opts.repo = check.repo
+    Object.assign(check, opts.config(opts, data))
   }
 
   return check

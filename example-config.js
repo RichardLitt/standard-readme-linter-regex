@@ -8,15 +8,13 @@ const escapeRegExp = require('escape-string-regexp')
 //  projectLink: 'https://github.com/multiformats/multiformats'
 // }
 
+// Default best way is to pass in all options from main module
 module.exports = function plugin (opts, data) {
-  // You could also use the default opts object, and return that
+  // You could also just use the default opts object, and return that
   const check = {}
-  // Pass in all options from main module
-  // These are only needed if you use these variables in your extra checks
-  opts = opts.opts || {}
-  // Dynamically update repo and project
-  opts.repo = opts.config.repo
-  opts.project = opts.config.project
+
+  opts.projectName = opts.projectName || opts.project
+  opts.projectLink = opts.projectLink || `https://github.com/${opts.project}/${opts.project}`
 
   // These are example checks, used by Protocol Labs for checking the IPFS, multiformats, IPLD, and libp2p organizations
   check.projectBadge = ('' + data).match(escapeRegExp(`[![](https://img.shields.io/badge/project-${opts.projectName}-blue.svg?style=flat-square)](${opts.projectLink})`))
