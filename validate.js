@@ -56,7 +56,7 @@ module.exports = function validate (data, path, opts) {
 
   if (opts.config) {
     opts.project = check.project
-    opts.repo = check.repo
+    opts.repo = repo
     Object.assign(check, opts.config(opts, data))
   }
 
