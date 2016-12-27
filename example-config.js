@@ -9,7 +9,7 @@ const escapeRegExp = require('escape-string-regexp')
 // }
 
 // Default best way is to pass in all options from main module
-module.exports = function plugin (opts, data) {
+module.exports = function plugin (opts, existingChecks, data) {
   // You could also just use the default opts object, and return that
   const check = {}
 
@@ -23,8 +23,10 @@ module.exports = function plugin (opts, data) {
   check.freenodeBadge = ('' + data).match(escapeRegExp(`[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipfs)`))
   check.labsBadge = ('' + data).match(escapeRegExp(`[![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)`))
   // Check for Travis or Circle CI, with particular parameters
-  check.ci = ('' + data).match(`(\\[\\!\\[Travis CI\\]\\(https:\\/\\/img\\.shields\\.io\\/travis\\/${opts.project}\\/${opts.repo}\\.svg\\?style=flat-square(?:&branch=(master|develop))?\\)\\]\\(https:\\/\\/travis-ci\\.org\\/${opts.project}\\/${opts.repo}\\)|\\[\\!\\[Circle CI\\]\\(https:\\/\\/img\\.shields\\.io\\/circleci\\/project\\/github\\/${opts.project}\\/${opts.repo}\\.svg\\?style=flat-square\\)\\]\\(https:\\/\\/circleci\\.com\\/gh\\/${opts.project}\\/${opts.repo}\\))`)
-  check.codecov = ('' + data).match(`\\[\\!\\[codecov\\.io\\]\\(https:\\/\\/img\\.shields\\.io\\/codecov\\/c\\/github\\/${opts.project}\\/${opts.repo}\\.svg\\?style=flat-square(?:&branch=(master|develop))?\\)\\]\\(https:\\/\\/codecov\\.io\\/github\\/${opts.project}\\/${opts.repo}(?:\\?branch=(master|develop))?\\)`)
+  if (existingChecks.codeRepo) {
+    check.ci = ('' + data).match(`(\\[\\!\\[Travis CI\\]\\(https:\\/\\/img\\.shields\\.io\\/travis\\/${opts.project}\\/${opts.repo}\\.svg\\?style=flat-square(?:&branch=(master|develop))?\\)\\]\\(https:\\/\\/travis-ci\\.org\\/${opts.project}\\/${opts.repo}\\)|\\[\\!\\[Circle CI\\]\\(https:\\/\\/img\\.shields\\.io\\/circleci\\/project\\/github\\/${opts.project}\\/${opts.repo}\\.svg\\?style=flat-square\\)\\]\\(https:\\/\\/circleci\\.com\\/gh\\/${opts.project}\\/${opts.repo}\\))`)
+    check.codecov = ('' + data).match(`\\[\\!\\[codecov\\.io\\]\\(https:\\/\\/img\\.shields\\.io\\/codecov\\/c\\/github\\/${opts.project}\\/${opts.repo}\\.svg\\?style=flat-square(?:&branch=(master|develop))?\\)\\]\\(https:\\/\\/codecov\\.io\\/github\\/${opts.project}\\/${opts.repo}(?:\\?branch=(master|develop))?\\)`)
+  }
   check.labsLicense = ('' + data).match(`Protocol Labs Inc.`)
   check.coc = ('' + data).match(new RegExp(`Please be aware that all interactions related to ${opts.projectName}`, 'gi'))
   check.cocLink = ('' + data).match(escapeRegExp('[Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md)'))
