@@ -30,7 +30,7 @@ module.exports = function validate (data, path, opts) {
   // There is a standard readme link somewhere TODO near the end
 
   // Badges
-  check.standardReadmeBadge = ('' + data).match(escapeRegExp('[![](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)'))
+  check.standardReadmeBadge = ('' + data).match(escapeRegExp('[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)'))
 
   // TOC
   if (('' + data).match(new RegExp('\n', 'g')) && ('' + data).match(new RegExp('\n', 'g')).length >= 100) {
