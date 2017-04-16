@@ -4,8 +4,12 @@ const validate = require('./validate')
 
 function printObject (obj) {
   for (var key in obj) {
-    var keyColor = (obj[key]) ? `${!!(obj[key])}`.green : `${!!(obj[key])}`.red
-    console.log(`${key}:`.blue + keyColor)
+    if (key !== 'project') {
+      var keyColor = (obj[key]) ? `${!!(obj[key])}`.green : `${!!(obj[key])}`.red
+      console.log(`${key}:`.blue + keyColor)
+    } else {
+      console.log(`${key}:`.blue + (obj[key]))
+    }
   }
 }
 
