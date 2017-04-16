@@ -35,5 +35,8 @@ module.exports = function plugin (opts, existingChecks, data) {
   check.notodo = !('' + data).match('(TODO|TBD)', 'gi')
   check.hackOnIPFS = !('' + data).match('Want to hack on IPFS', 'gi')
 
+  // This is an example how to override a check
+  check.codeRepo = ('' + data).match('standard')
+
   return check
 }

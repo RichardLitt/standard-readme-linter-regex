@@ -10,7 +10,7 @@ const cli = meow([`
   Options
     --project, -p The overarching project
     --repo, -r The name of the repository
-    --config, -c The path to a config js file to require
+    --config, -c The full path to a config js file to require
     --projectName The name of the project
     --projectLink The link to the project's main page
 

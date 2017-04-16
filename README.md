@@ -4,13 +4,18 @@
 
 > A dumb regex linter for standard-readme
 
+This is a linter that only checks by searching your document for string matches. It does not check for these matches based on what section they're in, which is why it is called a dumb checker. 
+
 ## Table of Contents
 
 - [Install](#install)
 - [Usage](#usage)
-  - [Options](#options)
-  - [Alias](#alias)
-  - [Configuration](#configuration)
+	- [Options](#options)
+	- [Alias](#alias)
+	- [Configuration](#configuration)
+- [Checks](#checks)
+- [Examples](#examples)
+- [Maintainers](#maintainers)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -23,7 +28,7 @@ npm i -g standard-readme-linter-regex
 ## Usage
 
 ```sh
-standard-readme-linter-regex README.MD -c config.js -r standard-readme-linter-regex -p richardlitt -n RichardLitt -l https://burntfen.com
+standard-readme-linter-regex README.MD -c /Users/richard/src/standard-readme-linter-regex/config.js -r standard-readme-linter-regex -p richardlitt -n RichardLitt -l https://burntfen.com
 ```
 
 ### Options
@@ -31,7 +36,7 @@ standard-readme-linter-regex README.MD -c config.js -r standard-readme-linter-re
 ```
 --project, -p The overarching project
 --repo, -r The name of the repository
---config, -c The path to a config js file to require
+--config, -c The full path to a config js file to require
 --projectName The name of the project
 --projectLink The link to the project's main page
 ```
@@ -42,13 +47,15 @@ This package is aliased as `srlr`.
 
 ### Configuration
 
-You can also use an external configuration file to define extra regexps. For instance:
+You can also use an external configuration file to define extra RegExps to check. For instance:
 
 ```sh
-srlr README.MD -c example-config.js
+srlr README.MD -c /Users/richard/src/standard-readme-linter-regex/example-config.js
 ```
 
 See the [example config file](example-config.js) for an example.
+
+Note: **These will override existing checks.**
 
 ## Checks
 
@@ -149,7 +156,7 @@ contribute:true
 issuesLink:false
 license:true
 codeRepo:false # Note: This is dumb, and matches the string in the example above.
-ccLicense:false # mitLicense disabled for non-code Repos.
+ccLicense:true # mitLicense disabled for non-code Repos. Same error with matching.
 mitLicense:true
 copyright:true
 copyrightYear:true
