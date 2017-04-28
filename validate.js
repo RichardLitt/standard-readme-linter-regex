@@ -48,7 +48,8 @@ module.exports = function validate (data, path, opts) {
     delete check.install
     delete check.usage
   } else {
-    check.mitLicense = ('' + data).match(new RegExp(escapeRegExp('[MIT](LICENSE)')))
+    check.mitLicense = ('' + data).match(new RegExp(/\[MIT\]\(LICENSE\)\.(txt|md)/i))
+    //check.mitLicense = ('' + data).match(new RegExp(escapeRegExp('[MIT](LICENSE)')))
   }
   check.copyright = ('' + data).match('©')
   check.copyrightYear = ('' + data).match('© [0-9\-]+')
