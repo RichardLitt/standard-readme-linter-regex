@@ -12,6 +12,7 @@
     "escape-string-regexp": "^1.0.5",
     "gh-description": "0.0.7",
     "graceful-fs": "^4.1.11",
+    "js-linguist": "0.0.0",
     "mocha": "^3.2.0"
   },
   "devDependencies": {},
