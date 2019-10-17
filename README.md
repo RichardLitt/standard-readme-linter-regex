@@ -16,7 +16,7 @@ This is a linter that only checks by searching your document for string matches.
 - [Checks](#checks)
 - [Examples](#examples)
 - [Maintainers](#maintainers)
-- [Contribute](#contribute)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Install
@@ -97,9 +97,9 @@ Is there an usage section?
 
 Is there an maintainers section?
 
-#### contribute
+#### contributing
 
-Is there a contribute section?
+Is there a contributing section?
 
 #### issuesLink
 
@@ -152,7 +152,7 @@ standardReadmeBadge:false
 install:true
 usage:true
 maintainers:true
-contribute:true
+contributing:true
 issuesLink:false
 license:true
 codeRepo:false # Note: This is dumb, and matches the string in the example above.
@@ -167,7 +167,7 @@ copyrightName:true
 
 [@RichardLitt](https://github.com/RichardLitt).
 
-## Contribute
+## Contributing
 
 Please do! Check out [the issues](https://github.com/RichardLitt/standard-readme-linter-regex/issues).
 
