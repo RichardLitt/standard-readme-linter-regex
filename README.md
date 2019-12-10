@@ -2,7 +2,7 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-> A dumb regex linter for standard-readme
+A dumb regex linter for standard-readme
 
 This is a linter that only checks by searching your document for string matches. It does not check for these matches based on what section they're in, which is why it is called a dumb checker. 
 
